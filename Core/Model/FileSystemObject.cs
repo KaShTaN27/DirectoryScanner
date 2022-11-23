@@ -28,8 +28,7 @@ public class FileSystemObject
 
     private long ComputeSize() {
         foreach (var child in Childs) {
-            child.ComputeSize();
-            Size += child.Size;
+            Size += child.ComputeSize();
         }
         return Size;
     }
