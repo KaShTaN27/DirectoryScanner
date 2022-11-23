@@ -35,7 +35,8 @@ public class FileSystemObject
 
     private void ComputePercentage() {
         foreach (var child in Childs) {
-            child.Percentage = (float)child.Size / this.Size * 100;
+            var childPercentage = (float)child.Size / Size * 100;
+            child.Percentage = float.IsNaN(childPercentage) ? 0.0f : childPercentage;
             child.ComputePercentage();
         }
     }
