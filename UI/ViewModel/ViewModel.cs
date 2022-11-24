@@ -39,7 +39,7 @@ public class ViewModel : INotifyPropertyChanged {
 
     private bool _isScanning;
 
-    private bool IsScanning {
+    public bool IsScanning {
         get => _isScanning;
         set {
             _isScanning = value;
