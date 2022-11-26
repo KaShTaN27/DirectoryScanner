@@ -32,7 +32,6 @@ public class DirectoryScanner : IDirectoryScanner {
 
     private FileSystemObject ProcessDirectory(string path) {
         var directoryInfo = GetDirectoryInfo(path);
-        // _directoriesQueue = new ConcurrentQueue<FileSystemObject>();
         var sourceToken = _tokenSource.Token;
         return StartScanning(directoryInfo, sourceToken);
     }
