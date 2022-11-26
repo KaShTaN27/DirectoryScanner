@@ -2,6 +2,7 @@
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Core.Model;
 using Core.Service;
 using UI.Command;
 using UI.Model;
@@ -53,8 +54,10 @@ public class ViewModel : INotifyPropertyChanged {
                 IsScanning = true;
                 _directoryScanner = new DirectoryScanner();
                 var fileSystemObject = _directoryScanner.Scan(Path);
-                fileSystemObject.ComputeStatistics();
-                FileSystemMember = new FileSystemMember(fileSystemObject);
+                var root = new FileSystemObject(fileSystemObject.Path, fileSystemObject.Name, fileSystemObject.Size);
+                root.Childs.Add(fileSystemObject);
+                root.ComputeStatistics();
+                FileSystemMember = new FileSystemMember(root);
                 IsScanning = false;
             });
         }, _ => Path != null && !IsScanning);
